@@ -1,6 +1,6 @@
 var firstNumber = 0;
 var secondNumber = 0;
-var operator = '';
+var operator = "";
 var result = 0;
 var operatorChoosen = false;
 
@@ -9,70 +9,81 @@ var operatorChoosen = false;
 function initialState() {
   var firstNumber = 0;
   var secondNumber = 0;
-  var operator = '';
+  var operator = "";
   var result = 0;
   var operatorChoosen = false;
 }
 
 function add(x, y) {
-  return x + y;
+  return Number(x) + Number(y);
 }
 
 function subtract(x, y) {
-  return x - y;
+  return Number(x) - Number(y);
 }
 
 function multiply(x, y) {
-  return x * y;
+  return Number(x) * Number(y);
 }
 
 function divide(x, y) {
-  return x / y;
+  return Number(x) / Number(y);
 }
 
 function powerOf(x, y) {
-  return Math.pow(x, y);
+  return Math.pow(Number(x), Number(y));
 }
 
 // onClick
 
-$('.number').click(function() {
+$(".number").click(function() {
   var buttonClicked = this;
   if (operatorChoosen == false) {
-    $('#first-number').text(buttonClicked.value);
+    buttonValue = buttonClicked.value;
+    $("#first-number").text(buttonValue);
     operatorChoosen = true;
-    firstNumber = 0;
+    firstNumber = buttonValue;
   } else {
-    $('#second-number').text(buttonClicked.value);
+    buttonValue2 = buttonClicked.value;
+    $("#second-number").text(buttonValue2);
+    secondNumber = buttonValue2;
   }
 });
 
-$('.operator').click(function() {
+$(".operator").click(function() {
   var buttonClicked = this;
-  if (buttonClicked.value == 'plus') {
-    $('#operator').text('+');
-  } else if (buttonClicked.value == 'minus') {
-    $('#operator').text('-');
-  } else if (buttonClicked.value == 'times') {
-    $('#operator').text('x');
-  } else if (buttonClicked.value == 'divide') {
-    $('#operator').text('/');
-  } else if (buttonClicked.value == 'power') {
-    $('#operator').text('^');
+  if (buttonClicked.value == "plus") {
+    $("#operator").text("+");
+    operator = "+";
+  } else if (buttonClicked.value == "minus") {
+    $("#operator").text("-");
+    operator = "-";
+  } else if (buttonClicked.value == "times") {
+    $("#operator").text("x");
+    operator = "x";
+  } else if (buttonClicked.value == "divide") {
+    $("#operator").text("/");
+    operator = "/";
+  } else if (buttonClicked.value == "power") {
+    $("#operator").text("^");
+    operator = "^";
   }
 });
 
-$('.equal').click(function() {
-  $('#result').text('=');
-  if (buttonClicked.value == 'plus') {
-    add();
-  } else if (buttonClicked.value == 'minus') {
-    subtract();
-  } else if (buttonClicked.value == 'times') {
-    multiply();
-  } else if (buttonClicked.value == 'divide') {
-    divide();
-  } else if (buttonClicked.value == 'power') {
-    powerOf();
+$(".equal").click(function() {
+  var buttonClicked = this;
+  $("#result").text("=");
+  if (operator == "+") {
+    $("#result").text("=" + add(firstNumber, secondNumber));
+  } else if (operator == "-") {
+    $("#result").text("=" + subtract(firstNumber, secondNumber));
+  } else if (operator == "x") {
+    $("#result").text("=" + multiply(firstNumber, secondNumber));
+  } else if (operator == "/") {
+    $("#result").text("=" + divide(firstNumber, secondNumber));
+  } else if (operator == "^") {
+    $("#result").text("=" + powerOf(firstNumber, secondNumber));
   }
 });
+
+$(".clear").click(function initialState() {});
