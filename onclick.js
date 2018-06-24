@@ -12,6 +12,10 @@ function initialState() {
   var operator = "";
   var result = 0;
   var operatorChoosen = false;
+  $("#first-number").empty();
+  $("#operator").empty();
+  $("#second-number").empty();
+  $("#result").empty();
 }
 
 function add(x, y) {
@@ -86,4 +90,6 @@ $(".equal").click(function() {
   }
 });
 
-$(".clear").click(function initialState() {});
+$(".clear").click(function() {
+  initialState();
+});
